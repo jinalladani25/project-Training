@@ -1,0 +1,89 @@
+{% extends "my_app/index.html" %}
+
+{% block content %}
+
+<style>
+.centered-form{
+	margin-top: 180px;
+	width: 1400px;
+	height: 400px;
+	margin-left: 325px;
+	margin-bottom: 60px;
+}
+
+.centered-form .panel{
+	background: rgba(255, 255, 255, 0.8);
+	box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px 20px;
+}
+.button_signin{
+	background-color:#3face4;
+	width: 100%;
+	border-radius: 5px;
+	padding: 5px 0;
+	font-weight: bold;
+	color: black;
+	border: 1px solid black;
+}
+</style>
+
+<div class="container">
+	<div class="row centered-form">
+	<div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+		<div class="panel panel-default" style="padding: 20px;">
+			<div class="panel-heading">
+					<h3 class="panel-title"> sign up Patient</h3>
+					 </div>
+					 <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+							<li style="border: 2px solid #6C707E ;border-radius: 5px; margin: 10px" class="nav-item">
+									<a class="nav-link " id="home-tab"  href="{% url 'registrationdoctor' %}" role="tab" aria-controls="home"
+										aria-selected="true"> Donor </a>
+								</li>
+								<li style="color:black;border: 2px solid #6C707E ;border-radius: 5px;margin: 10px" class="nav-item">
+									<a class="nav-link active" id="profile-tab" href="{% url 'registrationpatient' %}" role="tab" aria-controls="profile"
+										aria-selected="false">Patient </a>
+								</li>
+					</ul>
+					 <div class="panel-body">
+					<form action="{% url 'register' %}" method="post" >
+									{% csrf_token %}
+						<div class="row">
+							<div class="col-xs-6 col-sm-6 col-md-6">
+								<div class="form-group">
+										<input type="hidden" name="role" value="patient">
+						<input type="text" name="firstname" id="first_name" class="form-control input-sm" placeholder="First Name">
+								</div>
+							</div>
+							<div class="col-xs-6 col-sm-6 col-md-6">
+								<div class="form-group">
+									<input type="text" name="lastname" id="last_name" class="form-control input-sm" placeholder="Last Name">
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address">
+						</div>
+
+						<div class="row">
+							<div class="col-xs-6 col-sm-6 col-md-6">
+								<div class="form-group">
+									<input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password">
+								</div>
+							</div>
+							<div class="col-xs-6 col-sm-6 col-md-6">
+								<div class="form-group">
+									<input type="password" name="cnfpassword" id="cnfpassword" class="form-control input-sm" placeholder="Confirm Password">
+								</div>
+							</div>
+						</div>
+						
+						<input type="submit" value="Register" class="button_signin">
+					
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

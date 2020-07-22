@@ -1,0 +1,151 @@
+{% extends 'doctor_app/patient-panel/index.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'doctor_app\assets\plugins\dropzone\dropzone.css' %}">
+    <link rel="stylesheet" href="{% static 'doctor_app\assets\plugins\bootstrap-material-datetimepicker\css\bootstrap-material-datetimepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'doctor_app\assets\plugins\bootstrap-select\css\bootstrap-select.css' %}">
+
+    <section class="content home">
+        
+        <div class="block-header">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-12">
+                    <h2>Edit Patient Profile <small class="text-muted">Welcome to Medico-experts</small></h2>
+                </div>            
+                <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+                    
+                                                <button class="btn btn-white btn-icon btn-round d-none d-md-inline-block float-right m-l-10" type="button">
+                            <i class="zmdi zmdi-plus"></i>
+                        </button>
+                    
+                    
+                    <ul class="breadcrumb float-md-right">
+                        <li class="breadcrumb-item"><a href="{% url 'patient_home' %}"><i class="zmdi zmdi-home"></i> Medico-experts</a></li>
+                                                        <li class="breadcrumb-item">Patients</li>
+                                                                                    <li class="breadcrumb-item active">Edit Profile</li>
+                                                </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">                
+         
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+            <div class="header">
+                <h2><strong>Basic</strong> Information <small>Description text here...</small> </h2>
+                <ul class="header-dropdown">
+                    <li class="remove">
+                        <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <form action="{% url 'update_patientprofile' %}" method="POST" enctype="multipart/form-data"  >
+                {% csrf_token %}
+                
+        <div class="row clearfix"> 
+
+            <div class="col-md-12">
+                    <div class="form-group">
+                            <input type="hidden" class="form-control" placeholder="Email" name="email" value="{{request.session.email}}">
+                        </div>
+            </div>
+            <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="file" class="form-control" placeholder="Choose File " name="profilepic" value="{{did.profilepic}}">
+                    </div>
+                </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="First Name" name="firstname" value="{{pid.firstname}}">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Last Name" name="lastname" value="{{pid.lastname}}">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Phone No." name="phone_no" value="{{pid.phone_no}}">
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">                            
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Age" name="age" value="{{pid.age}}">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <select class="form-control show-tick" name="gender">
+                        <option value="">- Gender -</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>      
+                <div class="col-sm-3">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Occuption" name="occuption" value="{{pid.occuption}}">
+                        </div>
+                </div>
+                <div class="col-sm-5">
+                        <div class="form-group">
+                            <textarea rows="4" class="form-control no-resize" placeholder="Address" name="address" value="{{pid.address}}"></textarea>
+                        </div>
+                </div>
+                <div class="col-sm-6">
+                        <div class="form-group">
+                            <textarea rows="4" class="form-control no-resize" placeholder="Description" name="about" value="{{pid.about}}"></textarea>
+                        </div>
+                </div>
+            </div>
+        </div>
+        
+            <button type="submit" class="btn btn-info btn-round">Save Changes</button>
+        </form>
+        
+
+            
+        </div>
+    </div>
+</div>
+
+
+        </div>
+    </section>
+            <!-- Scripts -->
+            <script src="{% static 'doctor_app\assets\bundles\libscripts.bundle.js' %}"></script>    
+    <script src="{% static 'doctor_app\assets\bundles\vendorscripts.bundle.js' %}"></script>
+
+    <script src="{% static 'doctor_app\assets\bundles\mainscripts.bundle.js' %}"></script>
+                            <script src="{% static 'doctor_app\assets\plugins\dropzone\dropzone.js' %}"></script>
+<script src="{% static 'doctor_app\assets\plugins\momentjs\moment.js' %}"></script>
+<script src="{% static 'doctor_app\assets\plugins\bootstrap-material-datetimepicker\js\bootstrap-material-datetimepicker.js' %}"></script>
+
+<script>
+    $(function () {
+    //Datetimepicker plugin
+    $('.datetimepicker').bootstrapMaterialDatePicker({
+        format: 'dddd DD MMMM YYYY - HH:mm',
+        clearButton: true,
+        weekStart: 1
+    });
+});
+</script>
+            <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/59f5afbbbb0c3f433d4c5c4c/default';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    <!--End of Tawk.to Script-->
+</body>
+</html>
+{% endblock %}
